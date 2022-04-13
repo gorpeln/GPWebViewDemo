@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>OC与JS交互</title>
+        <script>
+            function jsSendMessage(){
+                // js 发送消息, messgaeToOC 是在 OC 代码中注册过的名称
+                var val =  window.webkit.messageHandlers.messgaeToOC.postMessage("js 发送给 OC 的消息");
+                alert(val);
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <a href="gorpeln://WKWebView_jsCallOC:8080/helloword/js?id=1001"> WK 中调用OC  </a>
+        </div>
+        <br />
+        <div>
+            <input type="button" value="messgaeHandle" onClick="jsSendMessage()" />
+        </div>
+    </body>
+</html>

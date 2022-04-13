@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+            <title>OC与JS交互</title>
+            <script>
+                function ocCallJS(str) {
+                    alert("OC ---> JS || " + str);
+                    // return value 通过 evaluateJavaScript: completionHandler: 回调中的值传递给OC
+                    return "ocCallJS return value";
+                }
+            </script>
+    </head>
+</html>

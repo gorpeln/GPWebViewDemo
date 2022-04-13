@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>OC与JS交互</title>
+	    <script>
+	        function showAlert_hasReturnValue(str){
+	            alert('OC 调用JS ' + str);
+	            return '返回值给OC';
+	        }
+	        function showAlert_noReturnValue(str){
+	            alert('OC 调用JS ' + str);
+	        }
+            function ocCallJS_byJSContext(object){
+                alert('OC 调用JS name= ' + object.name + '  age = ' + object.age);
+            }
+	    </script>
+	</head>
+</html>

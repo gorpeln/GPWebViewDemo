@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>OC与JS交互</title>
+        <script>
+            function getUserInfo() {
+                // 注入OC类以后，此处通过OC类名可直接调用
+                var val = ViewController.getUserInfo();
+                alert(val);
+            }
+            
+            function jsCallOC_byJSContext() {
+                // arr 是 OC 注入的全局属性，可以在此处处理后，传递给OC
+                // 对注入的属性，做业务处理后返回给 OC
+                arr.splice(0, 1)
+                blockOCCode(arr)
+            }
+         
+        </script>
+	</head>
+	<body>
+	    <div>
+	        <a href="gorpeln://jsCallOC:/helloword/js">JS 调用 OC 方法（该标签的操作将被 OC 拦截）
+	        </a>
+            
+            <input type="button" value="注入OC类的方式 调用OC方法，并获取返回值" onClick="getUserInfo()" />
+
+            <input type="button" value="JS 调用 OC 方法（JS 回调 OCBlock 代码块）" onClick="jsCallOC_byJSContext()" />
+
+	    </div>
+	</body>
+</html>

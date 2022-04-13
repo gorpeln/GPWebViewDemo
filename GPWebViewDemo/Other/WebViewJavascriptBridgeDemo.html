@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OC与JS交互</title>
+    <script>
+       <!-- 使用该库，JS 中代码中需要添加：-->
+       function setupWebViewJavascriptBridge(callback) {
+           if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+           if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+           window.WVJBCallbacks = [callback];
+           var WVJBIframe = document.createElement('iframe');
+           WVJBIframe.style.display = 'none';
+           WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+           document.documentElement.appendChild(WVJBIframe);
+           setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+       }
+        
+        <!--处理 oc 调用 js -->
+        setupWebViewJavascriptBridge(function(bridge) {
+            bridge.registerHandler('OCCallJSFunction', function(data, responseCallback) {
+                alert('JS方法被调用:' + data);
+                responseCallback({'userId': '123456'});
+            })
+            
+        })
+        
+        <!--处理 js 调用 oc -->
+        function jsCallsOCFunc(){
+            WebViewJavascriptBridge.callHandler('jsCallsOC', {'name': 'gorpeln'}, function(response) {
+               alert(response);
+           })
+        }
+    
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" value="JS 调用 OC 方法" onclick="jsCallsOCFunc()" /> <br />
+    <div/>
+    <br />
+
+    <br />
+</body>
+</html>
